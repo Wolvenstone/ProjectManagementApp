@@ -1,11 +1,11 @@
 package com.se.projectmanagement;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,21 +21,28 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+//public class MainActivity extends Activity {
 
     private TextView info;
     private LoginButton loginButton;
@@ -69,12 +76,12 @@ public class MainActivity extends AppCompatActivity
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));
             StringBuilder total = new StringBuilder(in.available());
             String line;
-           /* while ((line = reader.readLine()) != null) {
+            while ((line = reader.readLine()) != null) {
                 total.append(line).append('\n');
             }
             System.out.println(total.toString());
             //readStream(in);
-            System.out.println(in);
+            /*System.out.println(in);
             System.out.println("Output from Server .... \n");
             Log.d("Connection", "Server Connected");*/
 
@@ -89,6 +96,7 @@ public class MainActivity extends AppCompatActivity
             e.printStackTrace();
 
         }
+        final Intent i= new Intent(this,ProjectList.class);
 
 
 
@@ -102,13 +110,30 @@ public class MainActivity extends AppCompatActivity
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                info.setText(
+                /*info.setText(
                         "User ID: "
                                 + loginResult.getAccessToken().getUserId()
                                 + "\n" +
                                 "Auth Token: "
                                 + loginResult.getAccessToken().getToken()
-                );
+                );*/
+                GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(),
+                        new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(JSONObject object, GraphResponse response) {
+                                try {
+                                    info.setText("Hi, " + object.getString("name")+ "/n"+ object);
+                                } catch(JSONException ex) {
+                                    ex.printStackTrace();
+                                }
+                            }
+                        });
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "id,name,email,gender, birthday");
+                request.setParameters(parameters);
+                request.executeAsync();
+
+                startActivityForResult(i,1);
 
             }
 
@@ -140,6 +165,7 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
     }
 
 
