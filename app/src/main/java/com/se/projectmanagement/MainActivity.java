@@ -1,5 +1,6 @@
 package com.se.projectmanagement;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +15,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -28,8 +37,14 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private TextView info;
+    private LoginButton loginButton;
+    private CallbackManager callbackManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        callbackManager = CallbackManager.Factory.create();
 
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy =
@@ -45,22 +60,23 @@ public class MainActivity extends AppCompatActivity
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true);
             conn.setRequestMethod("GET");
-
+            System.out.println("AAA");
             System.out.println(conn.getContent());
-            System.out.println(conn.getResponseMessage());
+            System.out.println("BBB");
+            //System.out.println(conn.getResponseMessage());
 
             InputStream in = new BufferedInputStream(conn.getInputStream());
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));
             StringBuilder total = new StringBuilder(in.available());
             String line;
-            while ((line = reader.readLine()) != null) {
+           /* while ((line = reader.readLine()) != null) {
                 total.append(line).append('\n');
             }
             System.out.println(total.toString());
             //readStream(in);
             System.out.println(in);
             System.out.println("Output from Server .... \n");
-            Log.d("Connection", "Server Connected");
+            Log.d("Connection", "Server Connected");*/
 
             conn.disconnect();
 
@@ -80,6 +96,32 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        info = (TextView)findViewById(R.id.info);
+        loginButton = (LoginButton)findViewById(R.id.login_button);
+
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                info.setText(
+                        "User ID: "
+                                + loginResult.getAccessToken().getUserId()
+                                + "\n" +
+                                "Auth Token: "
+                                + loginResult.getAccessToken().getToken()
+                );
+
+            }
+
+            @Override
+            public void onCancel() {
+                info.setText("Login attempt canceled.");
+            }
+
+            @Override
+            public void onError(FacebookException e) {
+                info.setText("Login attempt canceled.");
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +141,8 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
+
 
     @Override
     public void onBackPressed() {
@@ -155,5 +199,10 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 }
