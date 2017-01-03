@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity
         try {
 
             //URL url = new URL("http://localhost:7777/api/tasks");
+            //URL url = new URL("http://10.0.2.2:7777/api/auth/facebook/token?access_token=<TOKEN_HERE");
             URL url = new URL("http://10.0.2.2:7777/api/projects");
             //URL url = new URL("http://www.android.com/");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -117,7 +118,7 @@ public class MainActivity extends AppCompatActivity
                                 "Auth Token: "
                                 + loginResult.getAccessToken().getToken()
                 );*/
-                GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(),
+               /* GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(),
                         new GraphRequest.GraphJSONObjectCallback() {
                             @Override
                             public void onCompleted(JSONObject object, GraphResponse response) {
@@ -131,9 +132,49 @@ public class MainActivity extends AppCompatActivity
                 Bundle parameters = new Bundle();
                 parameters.putString("fields", "id,name,email,gender, birthday");
                 request.setParameters(parameters);
-                request.executeAsync();
+                request.executeAsync();*/
 
-                startActivityForResult(i,1);
+                //startActivityForResult(i,1);
+
+                try {
+
+                    //URL url = new URL("http://10.0.2.2:7777/auth/facebook/token?access_token="+loginResult.getAccessToken());
+                    URL url = new URL("http://10.0.2.2:7777/auth/facebook/token?access_token="+loginResult.getAccessToken().getToken());
+                    //URL url = new URL("http://10.0.2.2:7777/api/projects");
+                    //URL url = new URL("http://www.android.com/");
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setDoOutput(true);
+                    conn.setRequestMethod("GET");
+                    System.out.println("AAA");
+                    System.out.println(conn);
+                    System.out.println(conn.getContent());
+                    System.out.println("BBB");
+                    //System.out.println(conn.getResponseMessage());
+
+                    InputStream in = new BufferedInputStream(conn.getInputStream());
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+                    StringBuilder total = new StringBuilder(in.available());
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        total.append(line).append('\n');
+                    }
+                    System.out.println(total.toString());
+                    //readStream(in);
+            /*System.out.println(in);
+            System.out.println("Output from Server .... \n");
+            Log.d("Connection", "Server Connected");*/
+
+                    conn.disconnect();
+
+                } catch (MalformedURLException e) {
+
+                    e.printStackTrace();
+
+                } catch (IOException e) {
+
+                    e.printStackTrace();
+
+                }
 
             }
 
