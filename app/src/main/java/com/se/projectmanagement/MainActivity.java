@@ -2,6 +2,7 @@ package com.se.projectmanagement;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
@@ -32,9 +33,12 @@ import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -62,7 +66,29 @@ public class MainActivity extends AppCompatActivity
         try {
             URL url = new URL("http://10.0.2.2:7777/api/projects");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
+            //conn.setRequestMethod("GET");
+
+
+            //CODE FOR POST REQUEST
+            /*conn.setRequestMethod("POST");
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+
+            Uri.Builder builder = new Uri.Builder()
+                    .appendQueryParameter("title", "app415")
+                    .appendQueryParameter("description", "android app");
+            String query = builder.build().getEncodedQuery();
+
+            OutputStream os = conn.getOutputStream();
+            BufferedWriter writer = new BufferedWriter(
+                    new OutputStreamWriter(os, "UTF-8"));
+            writer.write(query);
+            writer.flush();
+            writer.close();
+            os.close();
+
+            conn.connect();*/
+            //END  CODE FOR POST REQUEST
 
             InputStream in = new BufferedInputStream(conn.getInputStream());
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));
