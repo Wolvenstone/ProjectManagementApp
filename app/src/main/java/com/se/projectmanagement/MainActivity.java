@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity
             URL url = new URL("http://10.0.2.2:7777/api/projects");
             //URL url = new URL("http://www.android.com/");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setDoOutput(true);
+            //conn.setDoOutput(true);
             conn.setRequestMethod("GET");
             System.out.println("AAA");
             System.out.println(conn.getContent());
