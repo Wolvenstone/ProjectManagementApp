@@ -14,13 +14,20 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ProjectList"
-            android:label="@string/projectList">
+
+        <activity
+            android:name=".ProjectList"
+            android:label="@string/projectList"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name=".ProjectList" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
+
         <activity android:name="com.facebook.FacebookActivity"
             android:configChanges=
                 "keyboard|keyboardHidden|screenLayout|screenSize|orientation"

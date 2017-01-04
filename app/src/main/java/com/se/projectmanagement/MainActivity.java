@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -42,7 +43,6 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-//public class MainActivity extends Activity {
 
     private TextView info;
     private LoginButton loginButton;
@@ -60,18 +60,9 @@ public class MainActivity extends AppCompatActivity
         }
 
         try {
-
-            //URL url = new URL("http://localhost:7777/api/tasks");
-            //URL url = new URL("http://10.0.2.2:7777/api/auth/facebook/token?access_token=<TOKEN_HERE");
             URL url = new URL("http://10.0.2.2:7777/api/projects");
-            //URL url = new URL("http://www.android.com/");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            //conn.setDoOutput(true);
             conn.setRequestMethod("GET");
-            System.out.println("AAA");
-            System.out.println(conn.getContent());
-            System.out.println("BBB");
-            //System.out.println(conn.getResponseMessage());
 
             InputStream in = new BufferedInputStream(conn.getInputStream());
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));
@@ -81,10 +72,6 @@ public class MainActivity extends AppCompatActivity
                 total.append(line).append('\n');
             }
             System.out.println(total.toString());
-            //readStream(in);
-            /*System.out.println(in);
-            System.out.println("Output from Server .... \n");
-            Log.d("Connection", "Server Connected");*/
 
             conn.disconnect();
 
@@ -97,9 +84,6 @@ public class MainActivity extends AppCompatActivity
             e.printStackTrace();
 
         }
-        final Intent i= new Intent(this,ProjectList.class);
-
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -206,7 +190,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
     }
 
 
@@ -249,18 +232,18 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (id == R.id.nav_projects) {
+            startActivity(new Intent(MainActivity.this, ProjectList.class));
+            return true;
+        } else if (id == R.id.nav_milestones) {
+            Toast.makeText(this, "MILESTONE", Toast.LENGTH_SHORT).show();
+            return true;
+        } else if (id == R.id.nav_tasks) {
+            Toast.makeText(this, "TASK", Toast.LENGTH_SHORT).show();
+            return true;
+        } else if (id == R.id.nav_discussion) {
+            Toast.makeText(this, "DISCUSSION", Toast.LENGTH_SHORT).show();
+            return true;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
