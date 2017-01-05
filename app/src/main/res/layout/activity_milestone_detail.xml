@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:weightSum="1">
+
+    <TextView
+        android:text="Milestone Detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/projectId"
+        android:textAlignment="center"
+        android:textSize="30sp" />
+
+    <EditText
+        android:text="project"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/projectTitle"
+        android:textAlignment="center"
+        android:textSize="30sp" />
+
+    <EditText
+        android:text="description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/projectDescription"
+        android:textAlignment="center"
+        android:textSize="30sp" />
+
+    <EditText
+        android:text="date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/milestoneTo"
+        android:textAlignment="center"
+        android:textSize="30sp" />
+
+    <Button
+        android:text="Edit Milestone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editMilestone"
+        android:textSize="30sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="180dp"
+        android:layout_weight="0.14" />
+
+</LinearLayout>
+
+
+

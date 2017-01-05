@@ -21,15 +21,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ProjectList"
-            android:label="@string/projectList"
-            android:parentActivityName=".MainActivity">
-            <intent-filter>
-                <action android:name=".ProjectList" />
+        android:name=".ProjectList"
+        android:label="@string/projectList"
+        android:parentActivityName=".MainActivity">
+        <intent-filter>
+            <action android:name=".ProjectList" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+            <category android:name="android.intent.category.DEFAULT" />
+        </intent-filter>
+    </activity>
         <activity
             android:name=".ProjectDetail"
             android:label="Project Detail"
@@ -46,6 +46,36 @@
             android:parentActivityName=".ProjectList">
             <intent-filter>
                 <action android:name=".ProjectAdd" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MilestoneList"
+            android:label="@string/projectList"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name=".MilestoneList" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MilestoneDetail"
+            android:label="Milestone Detail"
+            android:parentActivityName=".MilestoneList">
+            <intent-filter>
+                <action android:name=".MilestoneDetail" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MilestoneAdd"
+            android:label="Milestone Add"
+            android:parentActivityName=".MilestoneList">
+            <intent-filter>
+                <action android:name=".MilestoneAdd" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
