@@ -39,9 +39,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.net.HttpCookie;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
+import java.util.Map;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
@@ -51,6 +54,9 @@ public class MainActivity extends AppCompatActivity
     private TextView info;
     private LoginButton loginButton;
     private CallbackManager callbackManager;
+    static final String COOKIES_HEADER = "Set-Cookie";
+    //HttpURLConnection connection = ... ;
+    static java.net.CookieManager msCookieManager = new java.net.CookieManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,6 +164,7 @@ public class MainActivity extends AppCompatActivity
                     System.out.println("AAA");
                     System.out.println(conn);
                     System.out.println(conn.getContent());
+
                     System.out.println("BBB");
                     //System.out.println(conn.getResponseMessage());
 
@@ -169,6 +176,21 @@ public class MainActivity extends AppCompatActivity
                         total.append(line).append('\n');
                     }
                     System.out.println(total.toString());
+
+                    //static final String COOKIES_HEADER = "Set-Cookie";
+                    //HttpURLConnection connection = ... ;
+                    //static java.net.CookieManager msCookieManager = new java.net.CookieManager();
+
+                    Map<String, List<String>> headerFields = conn.getHeaderFields();
+                    List<String> cookiesHeader = headerFields.get(COOKIES_HEADER);
+
+                    if (cookiesHeader != null) {
+                        System.out.println("Cookies");
+                        for (String cookie : cookiesHeader) {
+                            msCookieManager.getCookieStore().add(null, HttpCookie.parse(cookie).get(0));
+                        }
+                    }
+
                     //readStream(in);
             /*System.out.println(in);
             System.out.println("Output from Server .... \n");

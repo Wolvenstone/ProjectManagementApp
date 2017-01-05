@@ -3,6 +3,7 @@ package com.se.projectmanagement;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 
@@ -41,6 +42,13 @@ public class ProjectList extends ListActivity {
             URL url = new URL("http://10.0.2.2:7777/api/projects");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
+
+            if (MainActivity.msCookieManager.getCookieStore().getCookies().size() > 0) {
+                // While joining the Cookies, use ',' or ';' as needed. Most of the servers are using ';'
+                System.out.println("COOKIES");
+                conn.setRequestProperty("Cookie",
+                        TextUtils.join(";",  MainActivity.msCookieManager.getCookieStore().getCookies()));
+            }
 
             InputStream in = new BufferedInputStream(conn.getInputStream());
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));
