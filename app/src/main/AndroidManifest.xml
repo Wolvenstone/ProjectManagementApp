@@ -20,28 +20,36 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ProjectList"
             android:label="@string/projectList"
             android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name=".ProjectList" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ProjectDetail"
-            android:label="ProjectDetail"
+            android:label="Project Detail"
             android:parentActivityName=".ProjectList">
             <intent-filter>
                 <action android:name=".ProjectDetail" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ProjectAdd"
+            android:label="Project Add"
+            android:parentActivityName=".ProjectList">
+            <intent-filter>
+                <action android:name=".ProjectAdd" />
 
-
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"

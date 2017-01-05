@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:weightSum="1">
+
+    <EditText
+        android:text="Enter title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/projectTitle"
+        android:textAlignment="center"
+        android:textSize="30sp" />
+
+    <EditText
+        android:text="Enter description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/projectDescription"
+        android:textAlignment="center"
+        android:textSize="30sp" />
+
+    <Button
+        android:text="Add Project"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/addProject"
+        android:textSize="30sp" />
+</LinearLayout>

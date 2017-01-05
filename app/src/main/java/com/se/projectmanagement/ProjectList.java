@@ -99,8 +99,7 @@ public class ProjectList extends ListActivity {
     }
 
     public void addProject(View v) {
-        Toast.makeText(this, "TODO", Toast.LENGTH_SHORT).show();
-        adapter.notifyDataSetChanged();
+        startActivity(new Intent(ProjectList.this, ProjectAdd.class));
     }
 
     @Override
