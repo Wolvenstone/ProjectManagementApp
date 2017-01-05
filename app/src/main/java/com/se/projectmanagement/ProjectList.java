@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,7 +22,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Roman on 02.01.2017.
@@ -68,10 +69,8 @@ public class ProjectList extends ListActivity {
                         String id = String.valueOf(bb.get("_id"));
                         String title = String.valueOf(bb.get("title"));
                         String description = String.valueOf(bb.get("description"));
-                        //System.out.println(title);
                         Project p = new Project (id,title,description);
                         listItems.add(p);
-
                     }
                 }
 
@@ -92,7 +91,7 @@ public class ProjectList extends ListActivity {
 
         }
 
-        setContentView(R.layout.project);
+        setContentView(R.layout.activity_project_list);
         adapter=new ArrayAdapter<Project>(this,
                 android.R.layout.simple_list_item_1,
                 listItems);
@@ -100,8 +99,23 @@ public class ProjectList extends ListActivity {
     }
 
     public void addProject(View v) {
-        listItems.add(new Project("1", "Project Test", "Das ist ein Projekt!"));
+        Toast.makeText(this, "TODO", Toast.LENGTH_SHORT).show();
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+        Intent detailIntent = new Intent(ProjectList.this, ProjectDetail.class);
+        detailIntent.putExtra("id", listItems.get((int)id).getId());
+        startActivity(detailIntent);
+    }
+
+    @Override
+    protected void onResume() {
+
+        super.onResume();
+        this.onCreate(null);
     }
 
 }
