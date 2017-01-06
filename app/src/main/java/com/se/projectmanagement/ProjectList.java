@@ -38,7 +38,6 @@ public class ProjectList extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         try {
             URL url = new URL("http://10.0.2.2:7777/api/projects");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();

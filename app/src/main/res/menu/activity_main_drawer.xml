@@ -7,10 +7,6 @@
             android:icon="@drawable/puzzle_menu"
             android:title="Projects" />
         <item
-            android:id="@+id/nav_milestones"
-            android:icon="@drawable/puzzle_menu"
-            android:title="Milestones" />
-        <item
             android:id="@+id/nav_tasks"
             android:icon="@drawable/puzzle_menu"
             android:title="Tasks" />

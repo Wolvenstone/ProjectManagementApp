@@ -11,6 +11,7 @@ package com.se.projectmanagement;
         import android.text.TextUtils;
         import android.view.View;
         import android.widget.Button;
+        import android.widget.CalendarView;
         import android.widget.EditText;
         import android.widget.TextView;
         import android.widget.Toast;
@@ -30,26 +31,36 @@ package com.se.projectmanagement;
         import java.net.HttpURLConnection;
         import java.net.MalformedURLException;
         import java.net.URL;
+        import java.text.SimpleDateFormat;
+        import java.util.Date;
 
 public class MilestoneAdd extends AppCompatActivity {
 
-    EditText to, description;
+    CalendarView to;
+    EditText description;
     Button add;
+    String projectId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_milestone_add);
 
-        to = (EditText)findViewById(R.id.calendarView);
+        Intent milestoneAddIntent = getIntent();
+        projectId = milestoneAddIntent.getStringExtra("projectId");
+
+        to = (CalendarView)findViewById(R.id.calendarView);
         description = (EditText)findViewById(R.id.milestoneDescription);
 
         add = (Button) findViewById(R.id.addMilestone);
         add.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String selectedDate = sdf.format(new Date(to.getDate()));
+
                 try {
-                    URL url = new URL("http://10.0.2.2:7777/api/projects/milestones/");
+                    URL url = new URL("http://10.0.2.2:7777/api/projects/" + projectId + "/milestones");
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("POST");
 
@@ -57,7 +68,7 @@ public class MilestoneAdd extends AppCompatActivity {
                     conn.setDoInput(true);
 
                     Uri.Builder builder = new Uri.Builder()
-                            .appendQueryParameter("to", to.getText().toString())
+                            .appendQueryParameter("to", selectedDate)
                             .appendQueryParameter("description", description.getText().toString());
                     String query = builder.build().getEncodedQuery();
 

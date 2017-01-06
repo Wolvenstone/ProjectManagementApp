@@ -34,9 +34,10 @@ import java.net.URL;
 public class MilestoneDetail extends AppCompatActivity {
 
     Milestone m;
-    TextView id;
-    EditText to, description, projectTitle;
+    TextView id, projectTitle;
+    EditText description, to;
     Button edit;
+    String projectId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,15 +45,17 @@ public class MilestoneDetail extends AppCompatActivity {
         setContentView(R.layout.activity_milestone_detail);
 
         id = (TextView) findViewById(R.id.milestoneId);
-        to = (EditText)findViewById(R.id.milestoneTo);
+        projectTitle = (TextView) findViewById(R.id.projectTitle);
         description = (EditText)findViewById(R.id.milestoneDescription);
-        projectTitle = (EditText) findViewById(R.id.projectTitle);
+        to = (EditText)findViewById(R.id.milestoneTo);
 
         Intent detailIntent = getIntent();
         String milestoneId = detailIntent.getStringExtra("id");
+        projectId = detailIntent.getStringExtra("projectId");
+        String title = detailIntent.getStringExtra("projectTitle");
 
         try {
-            URL url = new URL("http://10.0.2.2:7777/api/projects/milestones" + milestoneId);
+            URL url = new URL("http://10.0.2.2:7777/api/milestones/" + milestoneId);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 
@@ -104,7 +107,7 @@ public class MilestoneDetail extends AppCompatActivity {
         id.setText(m.getId());
         to.setText(m.getTo());
         description.setText(m.getDescription());
-        projectTitle.setText(projectTitle.getText());
+        projectTitle.setText(title);
 
 
         edit = (Button) findViewById(R.id.editMilestone);
@@ -112,7 +115,7 @@ public class MilestoneDetail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    URL url = new URL("http://10.0.2.2:7777/api/projects/milestones");
+                    URL url = new URL("http://10.0.2.2:7777/api/projects/" + projectId + "/milestones");
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("POST");
 

@@ -7,13 +7,21 @@
     android:layout_height="fill_parent"
     android:weightSum="1">
 
+    <TextView
+        android:text="Create new Project"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        android:textSize="30sp"
+        android:textStyle="normal|bold" />
+
     <EditText
         android:hint="Enter title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/projectTitle"
         android:textAlignment="center"
-        android:textSize="30sp" />
+        android:textSize="25sp" />
 
     <EditText
         android:hint="Enter description"
@@ -21,12 +29,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/projectDescription"
         android:textAlignment="center"
-        android:textSize="30sp" />
+        android:textSize="25sp" />
 
     <Button
         android:text="Add Project"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/addProject"
-        android:textSize="30sp" />
+        android:textSize="25sp" />
+
 </LinearLayout>
