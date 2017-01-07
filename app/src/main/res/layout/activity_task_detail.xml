@@ -7,6 +7,13 @@
     android:layout_height="fill_parent"
     android:weightSum="1">
 
+    <TextView
+        android:text="Task Details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        android:textSize="30sp"
+        android:textStyle="normal|bold" />
 
     <TextView
         android:text="id"
@@ -14,41 +21,91 @@
         android:layout_height="wrap_content"
         android:id="@+id/taskId"
         android:textAlignment="center"
-        android:textSize="30sp" />
+        android:textSize="25sp" />
 
     <EditText
-        android:text="title"
+        android:hint="Enter title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/taskTitle"
-        android:textAlignment="center"
-        android:textSize="30sp" />
+        android:textSize="25sp" />
+
     <EditText
-        android:text="description"
+        android:hint="Enter description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/taskDescription"
-        android:textAlignment="center"
-        android:textSize="30sp" />
+        android:textSize="25sp" />
+
+    <TextView
+        android:text="State"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/taskState" />
+
+    <TextView
+        android:text="Assigned user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/taskUser" />
+
+    <TextView
+        android:text="Project"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/taskProject" />
+
+    <TextView
+        android:text="Milestone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView7"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/taskMilestone" />
 
     <EditText
-        android:text="from"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
         android:id="@+id/taskFrom"
-        android:textAlignment="center"
-        android:textSize="30sp" />
+        android:hint="From (YYYY-DD-MM)" />
+
     <EditText
-        android:text="to"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
         android:id="@+id/taskTo"
-        android:textAlignment="center"
-        android:textSize="30sp" />
+        android:hint="To (YYYY-MM-DD)" />
+
     <Button
         android:text="Edit Task"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/editTask"
         android:textSize="30sp" />
+
 </LinearLayout>

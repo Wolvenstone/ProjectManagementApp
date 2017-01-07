@@ -13,10 +13,18 @@
         android:layout_height="wrap_content"
         android:onClick="addTask"/>
 
+    <TextView
+        android:text="Tasks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:textSize="30sp"
+        android:textStyle="normal|bold" />
+
     <ListView
         android:id="@android:id/list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:drawSelectorOnTop="false"
-        />
+        android:drawSelectorOnTop="false" />
+
 </LinearLayout>

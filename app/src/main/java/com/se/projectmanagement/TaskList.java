@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,10 +29,10 @@ import java.util.ArrayList;
 
 public class TaskList extends ListActivity {
     //LIST OF ARRAY STRINGS WHICH WILL SERVE AS LIST ITEMS
-    ArrayList<Project> listItems = new ArrayList<Project>();
+    ArrayList<Task> listItems = new ArrayList<Task>();
 
     //DEFINING A STRING ADAPTER WHICH WILL HANDLE THE DATA OF THE LISTVIEW
-    ArrayAdapter<Project> adapter;
+    ArrayAdapter<Task> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,7 +118,6 @@ public class TaskList extends ListActivity {
 
     @Override
     protected void onResume() {
-
         super.onResume();
         this.onCreate(null);
     }

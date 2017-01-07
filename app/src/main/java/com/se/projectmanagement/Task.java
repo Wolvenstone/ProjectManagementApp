@@ -92,7 +92,7 @@ public class Task {
     }
 
     public String toString() {
-        return "Title: " + title + ", ID: " + id +  "Description: " + description + "State: " + state +"From: " + from + "To: " + to +
-                "Project: " + project + "Milestone: " + milestone + "User: " + user;
+        return "Title: " + title + "\nID: " + id +  "\nDescription: " + description + "\nState: " + state + "\nUser: " + user
+                + "\nProject: " + project + "\nMilestone: " + milestone + "\nFrom: " + from + "\nTo: " + to;
     }
 }

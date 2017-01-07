@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.io.BufferedInputStream;
@@ -26,7 +27,8 @@ import java.net.URL;
 
 public class TaskAdd extends AppCompatActivity {
 
-    EditText title, description, state, from, to, project, milestone, user;
+    EditText title, description, from, to;
+    Spinner state, user, project, milestone;
     Button add;
 
     @Override
@@ -36,12 +38,12 @@ public class TaskAdd extends AppCompatActivity {
 
         title = (EditText)findViewById(R.id.taskTitle);
         description = (EditText)findViewById(R.id.taskDescription);
-        state = (EditText)findViewById(R.id.taskState);
+        state = (Spinner)findViewById(R.id.taskState);
+        user = (Spinner)findViewById(R.id.taskUser);
+        project = (Spinner)findViewById(R.id.taskProject);
+        milestone = (Spinner)findViewById(R.id.taskMilestone);
         from = (EditText)findViewById(R.id.taskFrom);
         to = (EditText)findViewById(R.id.taskTo);
-        project = (EditText)findViewById(R.id.taskProject);
-        milestone = (EditText)findViewById(R.id.taskMilestone);
-        user = (EditText)findViewById(R.id.taskUser)
 
 
         add = (Button) findViewById(R.id.addTask);
@@ -59,12 +61,13 @@ public class TaskAdd extends AppCompatActivity {
                     Uri.Builder builder = new Uri.Builder()
                             .appendQueryParameter("title", title.getText().toString())
                             .appendQueryParameter("description", description.getText().toString())
-                            .appendQueryParameter("state", state.getText().toString())
+                            .appendQueryParameter("state", state.toString())
+                            .appendQueryParameter("user", user.toString())
+                            .appendQueryParameter("project", project.toString())
+                            .appendQueryParameter("milestone", milestone.toString())
                             .appendQueryParameter("from", from.getText().toString())
-                            .appendQueryParameter("to", to.getText().toString())
-                            .appendQueryParameter("project", project.getText().toString())
-                            .appendQueryParameter("milestone", milestone.getText().toString())
-                            .appendQueryParameter("user", user.getText().toString());
+                            .appendQueryParameter("to", to.getText().toString());
+
                     String query = builder.build().getEncodedQuery();
 
                     OutputStream os = conn.getOutputStream();

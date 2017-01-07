@@ -8,7 +8,7 @@
     android:weightSum="1">
 
     <TextView
-        android:text="Milestone Detail"
+        android:text="Milestone Details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView1"

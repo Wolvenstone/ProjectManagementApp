@@ -111,7 +111,6 @@ public class ProjectList extends ListActivity {
 
     @Override
     protected void onResume() {
-
         super.onResume();
         this.onCreate(null);
     }

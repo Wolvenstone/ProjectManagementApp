@@ -139,6 +139,12 @@ public class ProjectDetail extends AppCompatActivity {
                     }
                     System.out.println(total.toString());
 
+                    if (conn.getResponseCode() == 200) {
+                        Toast.makeText(ProjectDetail.this, "Project updated successfully!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(ProjectDetail.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+                    }
+
                     conn.disconnect();
 
                 } catch (MalformedURLException e) {
@@ -151,7 +157,6 @@ public class ProjectDetail extends AppCompatActivity {
 
                 }
 
-                Toast.makeText(ProjectDetail.this, "Project updated successfully!", Toast.LENGTH_SHORT).show();
             }
         });
 

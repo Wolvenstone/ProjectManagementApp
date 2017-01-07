@@ -41,6 +41,6 @@ public class Milestone {
     }
 
     public String toString() {
-        return "To: " + to + ", ID: " + id + ", Description: " + description;
+        return  "Description: " + description + "\nID: " + id +  "\nTo: " + to;
     }
 }

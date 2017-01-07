@@ -284,7 +284,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(MainActivity.this, ProjectList.class));
             return true;
         } else if (id == R.id.nav_tasks) {
-            Toast.makeText(this, "TASK", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(MainActivity.this, TaskList.class));
             return true;
         } else if (id == R.id.nav_discussion) {
             Toast.makeText(this, "DISCUSSION", Toast.LENGTH_SHORT).show();

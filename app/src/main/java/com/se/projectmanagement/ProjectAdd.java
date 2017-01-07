@@ -76,6 +76,12 @@ public class ProjectAdd extends AppCompatActivity {
                     }
                     System.out.println(total.toString());
 
+                    if (conn.getResponseCode() == 200) {
+                        Toast.makeText(ProjectAdd.this, "Project added successfully!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(ProjectAdd.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+                    }
+
                     conn.disconnect();
 
                 } catch (MalformedURLException e) {
@@ -88,7 +94,6 @@ public class ProjectAdd extends AppCompatActivity {
 
                 }
 
-                Toast.makeText(ProjectAdd.this, "Project added successfully!", Toast.LENGTH_SHORT).show();
             }
         });
 

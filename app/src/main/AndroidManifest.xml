@@ -82,7 +82,7 @@
         </activity>
         <activity
             android:name=".TaskList"
-            android:label="@string/projectList"
+            android:label= "Task List"
             android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name=".TaskList" />

@@ -126,7 +126,6 @@ public class MilestoneList extends ListActivity {
 
     @Override
     protected void onResume() {
-
         super.onResume();
         this.onCreate(null);
     }
