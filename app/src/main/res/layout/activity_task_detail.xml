@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:weightSum="1">
+
+
+    <TextView
+        android:text="id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/taskId"
+        android:textAlignment="center"
+        android:textSize="30sp" />
+
+    <EditText
+        android:text="title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/taskTitle"
+        android:textAlignment="center"
+        android:textSize="30sp" />
+    <EditText
+        android:text="description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/taskDescription"
+        android:textAlignment="center"
+        android:textSize="30sp" />
+
+    <EditText
+        android:text="from"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/taskFrom"
+        android:textAlignment="center"
+        android:textSize="30sp" />
+    <EditText
+        android:text="to"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/taskTo"
+        android:textAlignment="center"
+        android:textSize="30sp" />
+    <Button
+        android:text="Edit Task"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTask"
+        android:textSize="30sp" />
+</LinearLayout>
