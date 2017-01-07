@@ -33,7 +33,7 @@ public class ProjectDetail extends AppCompatActivity {
     Project p;
     TextView id;
     EditText title, description;
-    Button edit;
+    Button edit, showMilestones;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,6 +154,18 @@ public class ProjectDetail extends AppCompatActivity {
                 Toast.makeText(ProjectDetail.this, "Project updated successfully!", Toast.LENGTH_SHORT).show();
             }
         });
+
+        showMilestones = (Button) findViewById(R.id.showMilestones);
+        showMilestones.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent milestoneIntent = new Intent(ProjectDetail.this, MilestoneList.class);
+                milestoneIntent.putExtra("projectId", p.getId());
+                milestoneIntent.putExtra("projectTitle", p.getTitle());
+                startActivity(milestoneIntent);
+            }
+        });
+
 
     }
 }

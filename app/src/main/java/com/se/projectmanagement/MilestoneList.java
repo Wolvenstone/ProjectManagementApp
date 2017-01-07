@@ -38,13 +38,18 @@ public class MilestoneList extends ListActivity {
     //DEFINING A STRING ADAPTER WHICH WILL HANDLE THE DATA OF THE LISTVIEW
     ArrayAdapter<Milestone> adapter;
 
+    String projectId, projectTitle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Intent milestoneIntent = getIntent();
+        projectId = milestoneIntent.getStringExtra("projectId");
+        projectTitle = milestoneIntent.getStringExtra("projectTitle");
 
         try {
-            URL url = new URL("http://10.0.2.2:7777/api/projects/milestones");
+            URL url = new URL("http://10.0.2.2:7777/api/projects/" + projectId + "/milestones");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 
@@ -73,7 +78,7 @@ public class MilestoneList extends ListActivity {
                         String id = String.valueOf(bb.get("_id"));
                         String to = String.valueOf(bb.get("to"));
                         String description = String.valueOf(bb.get("description"));
-                        Milestone m = new Milestone (id,to,description);
+                        Milestone m = new Milestone(id,to,description);
                         listItems.add(m);
                     }
                 }
@@ -103,15 +108,20 @@ public class MilestoneList extends ListActivity {
     }
 
     public void addMilestone(View v) {
-        startActivity(new Intent(MilestoneList.this, MilestoneAdd.class));
+        Intent addMsIntent = new Intent(MilestoneList.this, MilestoneAdd.class);
+        addMsIntent.putExtra("projectId", projectId);
+        addMsIntent.putExtra("projectTitle", projectTitle);
+        startActivity(addMsIntent);
     }
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-        Intent detailIntent = new Intent(MilestoneList.this, MilestoneDetail.class);
-        detailIntent.putExtra("id", listItems.get((int)id).getId());
-        startActivity(detailIntent);
+        Intent msDetailIntent = new Intent(MilestoneList.this, MilestoneDetail.class);
+        msDetailIntent.putExtra("id", listItems.get((int)id).getId());
+        msDetailIntent.putExtra("projectId", projectId);
+        msDetailIntent.putExtra("projectTitle", projectTitle);
+        startActivity(msDetailIntent);
     }
 
     @Override

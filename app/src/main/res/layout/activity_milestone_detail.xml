@@ -12,34 +12,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView1"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:textSize="30sp"
+        android:textStyle="normal|bold" />
 
     <TextView
         android:text="id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/projectId"
+        android:id="@+id/milestoneId"
         android:textAlignment="center"
-        android:textSize="30sp" />
+        android:textSize="25sp" />
 
-    <EditText
-        android:text="project"
+    <TextView
+        android:text="project title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/projectTitle"
         android:textAlignment="center"
-        android:textSize="30sp" />
+        android:textSize="25sp" />
 
     <EditText
         android:text="description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/projectDescription"
+        android:id="@+id/milestoneDescription"
         android:textAlignment="center"
-        android:textSize="30sp" />
+        android:textSize="25sp" />
 
     <EditText
         android:text="date"
@@ -47,19 +45,14 @@
         android:layout_height="wrap_content"
         android:id="@+id/milestoneTo"
         android:textAlignment="center"
-        android:textSize="30sp" />
+        android:textSize="25sp" />
 
     <Button
         android:text="Edit Milestone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/editMilestone"
-        android:textSize="30sp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="180dp"
-        android:layout_weight="0.14" />
+        android:textSize="25sp" />
 
 </LinearLayout>
 

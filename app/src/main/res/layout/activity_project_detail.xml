@@ -7,6 +7,13 @@
     android:layout_height="fill_parent"
     android:weightSum="1">
 
+    <TextView
+        android:text="Project details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        android:textSize="30sp"
+        android:textStyle="normal|bold" />
 
     <TextView
         android:text="id"
@@ -14,7 +21,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/projectId"
         android:textAlignment="center"
-        android:textSize="30sp" />
+        android:textSize="25sp" />
 
     <EditText
         android:text="title"
@@ -22,7 +29,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/projectTitle"
         android:textAlignment="center"
-        android:textSize="30sp" />
+        android:textSize="25sp" />
 
     <EditText
         android:text="description"
@@ -30,12 +37,26 @@
         android:layout_height="wrap_content"
         android:id="@+id/projectDescription"
         android:textAlignment="center"
-        android:textSize="30sp" />
+        android:textSize="25sp" />
 
     <Button
         android:text="Edit Project"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/editProject"
-        android:textSize="30sp" />
+        android:textSize="25sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spacing" />
+
+    <Button
+        android:text="Show Milestones"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/showMilestones"
+        android:textSize="25sp"/>
+
+
 </LinearLayout>

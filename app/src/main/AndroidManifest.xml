@@ -29,7 +29,7 @@
 
             <category android:name="android.intent.category.DEFAULT" />
         </intent-filter>
-    </activity>
+        </activity>
         <activity
             android:name=".ProjectDetail"
             android:label="Project Detail"
@@ -52,8 +52,8 @@
         </activity>
         <activity
             android:name=".MilestoneList"
-            android:label="@string/projectList"
-            android:parentActivityName=".MainActivity">
+            android:label="Milestone List"
+            android:parentActivityName=".ProjectDetail">
             <intent-filter>
                 <action android:name=".MilestoneList" />
 

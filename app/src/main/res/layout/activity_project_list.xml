@@ -13,6 +13,14 @@
         android:layout_height="wrap_content"
         android:onClick="addProject"/>
 
+    <TextView
+        android:text="Projects"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:textSize="30sp"
+        android:textStyle="normal|bold" />
+
     <ListView
         android:id="@android:id/list"
         android:layout_width="fill_parent"
