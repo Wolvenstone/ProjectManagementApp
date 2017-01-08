@@ -111,7 +111,7 @@ public class MilestoneList extends ListActivity {
         Intent addMsIntent = new Intent(MilestoneList.this, MilestoneAdd.class);
         addMsIntent.putExtra("projectId", projectId);
         addMsIntent.putExtra("projectTitle", projectTitle);
-        startActivity(addMsIntent);
+        startActivityForResult(addMsIntent, 1);
     }
 
     @Override
@@ -121,7 +121,21 @@ public class MilestoneList extends ListActivity {
         msDetailIntent.putExtra("id", listItems.get((int)id).getId());
         msDetailIntent.putExtra("projectId", projectId);
         msDetailIntent.putExtra("projectTitle", projectTitle);
-        startActivity(msDetailIntent);
+        startActivityForResult(msDetailIntent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == 1) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                // The user picked a contact.
+                // The Intent's data Uri identifies which contact was selected.
+
+                // Do something with the contact here (bigger example below)
+            }
+        }
     }
 
     @Override

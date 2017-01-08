@@ -126,10 +126,6 @@ public class MainActivity extends AppCompatActivity
             }
             System.out.println(total.toString());
 
-            //static final String COOKIES_HEADER = "Set-Cookie";
-            //HttpURLConnection connection = ... ;
-            //static java.net.CookieManager msCookieManager = new java.net.CookieManager();
-
             Map<String, List<String>> headerFields = conn.getHeaderFields();
             List<String> cookiesHeader = headerFields.get(COOKIES_HEADER);
 

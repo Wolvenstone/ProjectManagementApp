@@ -7,21 +7,14 @@
     android:layout_height="fill_parent"
     android:weightSum="1">
 
-    <TextView
-        android:text="Create new Project"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView1"
-        android:textSize="30sp"
-        android:textStyle="normal|bold" />
-
     <EditText
         android:hint="Enter title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/projectTitle"
         android:textAlignment="center"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:layout_marginTop="10dp"/>
 
     <EditText
         android:hint="Enter description"
@@ -36,6 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/addProject"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:layout_marginTop="40dp"/>
 
 </LinearLayout>

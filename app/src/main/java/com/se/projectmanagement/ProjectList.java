@@ -4,6 +4,7 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -98,7 +99,7 @@ public class ProjectList extends ListActivity {
     }
 
     public void addProject(View v) {
-        startActivity(new Intent(ProjectList.this, ProjectAdd.class));
+        startActivityForResult(new Intent(ProjectList.this, ProjectAdd.class), 1);
     }
 
     @Override
@@ -106,7 +107,21 @@ public class ProjectList extends ListActivity {
         super.onListItemClick(l, v, position, id);
         Intent detailIntent = new Intent(ProjectList.this, ProjectDetail.class);
         detailIntent.putExtra("id", listItems.get((int)id).getId());
-        startActivity(detailIntent);
+        startActivityForResult(detailIntent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == 1) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                // The user picked a contact.
+                // The Intent's data Uri identifies which contact was selected.
+
+                // Do something with the contact here (bigger example below)
+            }
+        }
     }
 
     @Override
@@ -114,5 +129,4 @@ public class ProjectList extends ListActivity {
         super.onResume();
         this.onCreate(null);
     }
-
 }

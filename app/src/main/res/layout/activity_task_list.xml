@@ -16,6 +16,7 @@
     <TextView
         android:text="Tasks"
         android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView"

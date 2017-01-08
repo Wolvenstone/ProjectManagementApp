@@ -6,26 +6,13 @@
     android:layout_height="fill_parent"
     android:weightSum="1">
 
-    <TextView
-        android:text="Create new Milestone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView1"
-        android:textSize="30sp"
-        android:textStyle="normal|bold" />
-
-    <TextView
-        android:text=""
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView4" />
-
     <EditText
         android:hint="Enter description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/milestoneDescription"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:layout_marginTop="10dp" />
 
     <TextView
         android:text="Due date"
@@ -45,7 +32,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/addMilestone"
-        android:textSize="25sp"/>
+        android:textSize="25sp"
+        android:layout_marginTop="40dp"/>
 
 
 </LinearLayout>

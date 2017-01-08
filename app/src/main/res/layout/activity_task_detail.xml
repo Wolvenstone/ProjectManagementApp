@@ -8,20 +8,14 @@
     android:weightSum="1">
 
     <TextView
-        android:text="Task Details"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView1"
-        android:textSize="30sp"
-        android:textStyle="normal|bold" />
-
-    <TextView
         android:text="id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/taskId"
         android:textAlignment="center"
-        android:textSize="25sp" />
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp" />
 
     <EditText
         android:hint="Enter title"
@@ -106,6 +100,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/editTask"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:layout_marginTop="40dp"/>
 
 </LinearLayout>

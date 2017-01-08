@@ -4,11 +4,13 @@ package com.se.projectmanagement;
  * Created by vera on 06.01.2017.
  */
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -201,6 +203,13 @@ public class TaskDetail extends AppCompatActivity {
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("POST");
 
+                    if (MainActivity.msCookieManager.getCookieStore().getCookies().size() > 0) {
+                        // While joining the Cookies, use ',' or ';' as needed. Most of the servers are using ';'
+                        System.out.println("COOKIES");
+                        conn.setRequestProperty("Cookie",
+                                TextUtils.join(";",  MainActivity.msCookieManager.getCookieStore().getCookies()));
+                    }
+
                     conn.setDoOutput(true);
                     conn.setDoInput(true);
 
@@ -249,8 +258,30 @@ public class TaskDetail extends AppCompatActivity {
                 }
 
                 Toast.makeText(TaskDetail.this, "Task updated successfully!", Toast.LENGTH_SHORT).show();
+                setResult(Activity.RESULT_OK);
+                finish();
             }
         });
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // This ID represents the Home or Up button. In the case of this
+                // activity, the Up button is shown. Use NavUtils to allow users
+                // to navigate up one level in the application structure. For
+                // more details, see the Navigation pattern on Android Design:
+                //
+                // http://developer.android.com/design/patterns/navigation.html#up-vs-back
+                //
+                // TODO: If Settings has multiple levels, Up should navigate up
+                // that hierarchy.
+                setResult(Activity.RESULT_OK);
+                finish();
+
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -5,15 +5,8 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:weightSum="1">
-
-    <TextView
-        android:text="Milestone Details"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView1"
-        android:textSize="30sp"
-        android:textStyle="normal|bold" />
+    android:weightSum="1"
+    android:launchMode="singleTop">
 
     <TextView
         android:text="id"
@@ -21,7 +14,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/milestoneId"
         android:textAlignment="center"
-        android:textSize="25sp" />
+        android:textSize="16sp"
+        android:layout_marginTop="10dp" />
 
     <TextView
         android:text="project title"
@@ -29,7 +23,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/projectTitle"
         android:textAlignment="center"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        />
 
     <EditText
         android:text="description"
@@ -37,7 +32,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/milestoneDescription"
         android:textAlignment="center"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:layout_marginTop="10dp"/>
 
     <EditText
         android:text="date"
@@ -52,7 +48,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/editMilestone"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:layout_marginTop="40dp"/>
 
 </LinearLayout>
 
