@@ -76,7 +76,7 @@
         android:inputType="date"
         android:ems="10"
         android:id="@+id/taskFrom"
-        android:hint="From (YYYY-DD-MM)" />
+        android:hint="From (MM-DD-YYYY)" />
 
     <EditText
         android:layout_width="match_parent"
@@ -84,7 +84,7 @@
         android:inputType="date"
         android:ems="10"
         android:id="@+id/taskTo"
-        android:hint="To (YYYY-MM-DD)" />
+        android:hint="To (MM-DD-YYYY)" />
 
     <Button
         android:text="Add Task"
