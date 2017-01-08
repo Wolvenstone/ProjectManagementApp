@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:weightSum="1">
+
+    <TextView
+        android:text="Problem Details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        android:textSize="30sp"
+        android:textStyle="normal|bold" />
+
+    <TextView
+        android:text="id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/problemId"
+        android:textAlignment="center"
+        android:textSize="25sp" />
+
+    <EditText
+        android:hint="Enter text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/problemText"
+        android:textSize="25sp" />
+
+    <TextView
+        android:text="User"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/problemUser"
+        android:textAlignment="center"
+        android:textSize="25sp" />
+
+    <TextView
+        android:text="State"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/problemState" />
+
+    <Button
+        android:text="Show Solutions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/showSolutions"
+        android:textSize="30sp"
+        android:layout_marginTop="40dp"/>
+
+    <Button
+        android:text="Edit Problem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editProblem"
+        android:textSize="30sp"
+        android:layout_marginTop="40dp"/>
+
+</LinearLayout>

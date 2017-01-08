@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:weightSum="1">
+
+    <TextView
+        android:text="Create new Problem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        android:textSize="30sp"
+        android:textStyle="normal|bold" />
+
+    <EditText
+        android:hint="Enter text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/problemText"
+        android:textSize="25sp" />
+
+
+    <TextView
+        android:text="State"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/taskState" />
+
+
+
+    <Button
+        android:text="Add Problem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/addProblem"
+        android:textSize="30sp" />
+
+</LinearLayout>

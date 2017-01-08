@@ -111,6 +111,66 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".ProblemList"
+            android:label="Problem List"
+            android:parentActivityName=".TaskDetail">
+            <intent-filter>
+                <action android:name=".ProblemList" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ProblemAdd"
+            android:label="Problem Add"
+            android:parentActivityName=".ProblemList">
+            <intent-filter>
+                <action android:name=".ProblemAdd" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ProblemDetail"
+            android:label="Problem Detail"
+            android:parentActivityName=".ProblemList">
+            <intent-filter>
+                <action android:name=".ProblemDetail" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".SolutionList"
+            android:label="Solution List"
+            android:parentActivityName=".ProblemDetail">
+            <intent-filter>
+                <action android:name=".SolutionList" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".SolutionAdd"
+            android:label="Solution Add"
+            android:parentActivityName=".SolutionList">
+            <intent-filter>
+                <action android:name=".SolutionAdd" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".SolutionDetail"
+            android:label="Solution Detail"
+            android:parentActivityName=".SolutionList">
+            <intent-filter>
+                <action android:name=".SolutionDetail" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name"

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:weightSum="1">
+
+    <TextView
+        android:text="Solution Details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        android:textSize="30sp"
+        android:textStyle="normal|bold" />
+
+    <TextView
+        android:text="id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/solutionId"
+        android:textAlignment="center"
+        android:textSize="25sp" />
+
+    <EditText
+        android:hint="Enter text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/solutionText"
+        android:textSize="25sp" />
+
+    <TextView
+        android:text="User"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/solutionUser"
+        android:textAlignment="center"
+        android:textSize="25sp" />
+
+
+    <Button
+        android:text="Edit Solution"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editSolution"
+        android:textSize="30sp"
+        android:layout_marginTop="40dp"/>
+
+</LinearLayout>

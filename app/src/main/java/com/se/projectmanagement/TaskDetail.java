@@ -43,7 +43,7 @@ public class TaskDetail extends AppCompatActivity {
     TextView id;
     EditText title, description, from, to;
     Spinner state, user, project, milestone;
-    Button edit;
+    Button edit, showProblems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -431,6 +431,17 @@ public class TaskDetail extends AppCompatActivity {
                 Toast.makeText(TaskDetail.this, "Task updated successfully!", Toast.LENGTH_SHORT).show();
                 setResult(Activity.RESULT_OK);
                 finish();
+            }
+        });
+
+
+        showProblems = (Button) findViewById(R.id.showProblems);
+        showProblems.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent problemIntent = new Intent(TaskDetail.this, ProblemList.class);
+                problemIntent.putExtra("taskId", t.getId());
+                startActivity(problemIntent);
             }
         });
     }
