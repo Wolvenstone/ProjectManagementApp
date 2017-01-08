@@ -52,7 +52,7 @@ import java.net.URL;
             String[] states = {"open", "closed"};
             ArrayAdapter<String> stateAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, states);
             state.setAdapter(stateAdapter);
-            state.setSelection(1);
+            state.setSelection(0);
 
 
 

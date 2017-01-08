@@ -36,32 +36,32 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class ProblemDetail extends AppCompatActivity {
+public class SolutionDetail extends AppCompatActivity {
 
-    Problem p;
+    Solution s;
     TextView id, user;
     String task123;
     EditText text;
-    Spinner state;
-    Button edit, showSolutions;
-    String problemId, taskId;
+    Button edit;
+    String problemId, taskId, solutionId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_problem_detail);
+        setContentView(R.layout.activity_solution_detail);
 
-        id = (TextView) findViewById(R.id.problemId);
-        user = (TextView) findViewById(R.id.problemUser);
-        text = (EditText)findViewById(R.id.problemText);
-        state = (Spinner)findViewById(R.id.problemState);
+        id = (TextView) findViewById(R.id.solutionId);
+        user = (TextView) findViewById(R.id.solutionUser);
+        text = (EditText)findViewById(R.id.solutionText);
+
 
         Intent detailIntent = getIntent();
         taskId = detailIntent.getStringExtra("taskId");
-        problemId = detailIntent.getStringExtra("id");
+        problemId = detailIntent.getStringExtra("problemId");
+        solutionId = detailIntent.getStringExtra("id");
 
         try {
-            URL url = new URL("http://10.0.2.2:7777/api/problems/" + problemId);
+            URL url = new URL("http://10.0.2.2:7777/api/problems/" + solutionId);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 
@@ -87,12 +87,12 @@ public class ProblemDetail extends AppCompatActivity {
                     for (int i = 0; i < json.length(); i++) {
                         JSONObject bb = (JSONObject) json.get(i);
                         String id = String.valueOf(bb.get("_id"));
+                        //String title = String.valueOf(bb.get("title"));
                         String text = String.valueOf(bb.get("text"));
-                        String state = String.valueOf(bb.get("state"));
+                        String problem = String.valueOf(bb.get("problem"));
                         String task = String.valueOf(bb.get("task"));
                         String user = String.valueOf(bb.get("user"));
-                        p = new Problem (id, task, user, text, state);
-                        System.out.println(p.getTask());
+                        s = new Solution (id,task, user, text, problem);
                     }
                 }
 
@@ -115,14 +115,8 @@ public class ProblemDetail extends AppCompatActivity {
 
 
 
-        String[] states = {"open", "closed"};
-        ArrayAdapter<String> stateAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, states);
-        state.setAdapter(stateAdapter);
-        state.setSelection(stateAdapter.getPosition(p.getState()));
-
-
         try {
-            URL url = new URL("http://10.0.2.2:7777/api/users/"+p.getUser());
+            URL url = new URL("http://10.0.2.2:7777/api/users/"+s.getUser());
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 
@@ -146,13 +140,13 @@ public class ProblemDetail extends AppCompatActivity {
                 json = new JSONArray(total.toString());
                 if (json != null) {
 
-                        JSONObject bb = (JSONObject) json.get(0);
-                        String id = String.valueOf(bb.get("_id"));
-                        String firstname = String.valueOf(bb.get("firstname"));
-                        String lastname = String.valueOf(bb.get("lastname"));
-                        String email = String.valueOf(bb.get("email"));
-                        String facebookId = String.valueOf(bb.get("facebookID"));
-                        User u = new User(id, firstname, lastname, email, facebookId);
+                    JSONObject bb = (JSONObject) json.get(0);
+                    String id = String.valueOf(bb.get("_id"));
+                    String firstname = String.valueOf(bb.get("firstname"));
+                    String lastname = String.valueOf(bb.get("lastname"));
+                    String email = String.valueOf(bb.get("email"));
+                    String facebookId = String.valueOf(bb.get("facebookID"));
+                    User u = new User(id, firstname, lastname, email, facebookId);
                     user.setText(lastname);
 
                 }
@@ -175,20 +169,20 @@ public class ProblemDetail extends AppCompatActivity {
 
 
 
-        id.setText(p.getId());
-        text.setText(p.getText());
+        id.setText(s.getId());
+        text.setText(s.getText());
         //user.setText(p.getUser());
         //state.setText(t.getState());
         //project.setText(t.getProject());
         //milestone.setText(t.getMilestone());
         //user.setText(t.getUser());
 
-        edit = (Button) findViewById(R.id.editProblem);
+        edit = (Button) findViewById(R.id.editSolution);
         edit.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    URL url = new URL("http://10.0.2.2:7777/api/tasks/"+taskId+"/problems");
+                    URL url = new URL("http://10.0.2.2:7777/api/problems/"+problemId+"/solutions");
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("POST");
 
@@ -206,13 +200,12 @@ public class ProblemDetail extends AppCompatActivity {
 
                     Uri.Builder builder = new Uri.Builder()
                             .appendQueryParameter("id", id.getText().toString())
-                            .appendQueryParameter("user", p.getUser())
-                            .appendQueryParameter("task", taskId)
+                            .appendQueryParameter("user", s.getUser())
+                            //.appendQueryParameter("task", taskId)
                             //.appendQueryParameter("task_id", taskId)
-                            .appendQueryParameter("type", "problem")
+                            .appendQueryParameter("type", "solution")
                             .appendQueryParameter("text", text.getText().toString())
-                            .appendQueryParameter("state",  state.getSelectedItem().toString())
-                            .appendQueryParameter("problem", null);
+                            .appendQueryParameter("problem", problemId);
 
 
 
@@ -250,18 +243,7 @@ public class ProblemDetail extends AppCompatActivity {
 
                 }
 
-                Toast.makeText(ProblemDetail.this, "Problem updated successfully!", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        showSolutions = (Button) findViewById(R.id.showSolutions);
-        showSolutions.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent problemIntent = new Intent(ProblemDetail.this, SolutionList.class);
-                problemIntent.putExtra("problemId", p.getId());
-                problemIntent.putExtra("taskId", taskId);
-                startActivity(problemIntent);
+                Toast.makeText(SolutionDetail.this, "Problem updated successfully!", Toast.LENGTH_SHORT).show();
             }
         });
 

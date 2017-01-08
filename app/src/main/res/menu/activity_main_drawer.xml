@@ -10,10 +10,6 @@
             android:id="@+id/nav_tasks"
             android:title="Tasks"
             android:checkable="false" />
-        <item
-            android:id="@+id/nav_discussion"
-            android:title="Discussion"
-            android:checkable="false" />
     </group>
 
 </menu>

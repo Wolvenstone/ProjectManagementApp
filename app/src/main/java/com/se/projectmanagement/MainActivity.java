@@ -172,9 +172,6 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_tasks) {
             startActivity(new Intent(MainActivity.this, TaskList.class));
             return true;
-        } else if (id == R.id.nav_discussion) {
-            Toast.makeText(this, "DISCUSSION", Toast.LENGTH_SHORT).show();
-            return true;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
