@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -118,7 +119,7 @@ public class TaskDetail extends AppCompatActivity {
 
         }
 
-        //TODO get spinner items
+        //user dropdown
         ArrayList<User> userItems = new ArrayList<User>();
 
         try {
@@ -175,27 +176,170 @@ public class TaskDetail extends AppCompatActivity {
 
         }
 
-        String[] items = new String[userItems.size()];
+        String[] users = new String[userItems.size()];
         for (int i = 0; i < userItems.size(); i++) {
-            items[i] = userItems.get(i).getLastname();
+            users[i] = userItems.get(i).getLastname();
         }
 
-        ArrayAdapter<String> userAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
-
+        ArrayAdapter<String> userAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, users);
         user.setAdapter(userAdapter);
+        user.setSelection(userAdapter.getPosition(t.getUser()));
+        final ArrayList<User> finalUserItems = userItems;
+
+        //state dropdown
+        String[] states = {"open", "closed"};
+        ArrayAdapter<String> stateAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, states);
+        state.setAdapter(stateAdapter);
+        state.setSelection(stateAdapter.getPosition(t.getState()));
+
+        //project dropdown
+        ArrayList<Project> projectItems = new ArrayList<Project>();
+
+        try {
+            URL url = new URL("http://10.0.2.2:7777/api/projects");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+
+            if (MainActivity.msCookieManager.getCookieStore().getCookies().size() > 0) {
+                // While joining the Cookies, use ',' or ';' as needed. Most of the servers are using ';'
+                System.out.println("COOKIES");
+                conn.setRequestProperty("Cookie",
+                        TextUtils.join(";",  MainActivity.msCookieManager.getCookieStore().getCookies()));
+            }
+
+            InputStream in = new BufferedInputStream(conn.getInputStream());
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+            StringBuilder total = new StringBuilder(in.available());
+            String line;
+            while ((line = reader.readLine()) != null) {
+                total.append(line).append('\n');
+            }
+            System.out.println(total.toString());
+            JSONArray json=null;
+            try {
+                json = new JSONArray(total.toString());
+                projectItems = new ArrayList<Project>();
+                if (json != null) {
+                    for (int i = 0; i < json.length(); i++) {
+                        JSONObject bb = (JSONObject) json.get(i);
+                        String id = String.valueOf(bb.get("_id"));
+                        String title = String.valueOf(bb.get("title"));
+                        String description = String.valueOf(bb.get("description"));
+                        Project p = new Project(id,title,description);
+                        projectItems.add(p);
+                    }
+                }
+
+                System.out.println(projectItems);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            conn.disconnect();
+
+        } catch (MalformedURLException e) {
+
+            e.printStackTrace();
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+        }
+
+        String[] projects = new String[projectItems.size()];
+        for (int i = 0; i < projectItems.size(); i++) {
+            projects[i] = projectItems.get(i).getTitle();
+        }
+
+        ArrayAdapter<String> projectAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, projects);
+        project.setAdapter(projectAdapter);
+        project.setSelection(projectAdapter.getPosition(t.getProject()));
+
+        //milestone dropdown
+        final ArrayList<Project> finalProjectItems = projectItems;
+        project.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                ArrayList<MilestoneSpinnerItem> milestoneItems = new ArrayList<MilestoneSpinnerItem>();
+
+                String projectId = finalProjectItems.get((int) id).getId();
+
+                try {
+                    URL url = new URL("http://10.0.2.2:7777/api/projects/" + projectId + "/milestones");
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestMethod("GET");
+
+                    if (MainActivity.msCookieManager.getCookieStore().getCookies().size() > 0) {
+                        // While joining the Cookies, use ',' or ';' as needed. Most of the servers are using ';'
+                        System.out.println("COOKIES");
+                        conn.setRequestProperty("Cookie",
+                                TextUtils.join(";",  MainActivity.msCookieManager.getCookieStore().getCookies()));
+                    }
+
+                    InputStream in = new BufferedInputStream(conn.getInputStream());
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+                    StringBuilder total = new StringBuilder(in.available());
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        total.append(line).append('\n');
+                    }
+                    System.out.println(total.toString());
+                    JSONArray json=null;
+                    try {
+                        json = new JSONArray(total.toString());
+                        milestoneItems = new ArrayList<MilestoneSpinnerItem>();
+                        if (json != null) {
+                            for (int i = 0; i < json.length(); i++) {
+                                JSONObject bb = (JSONObject) json.get(i);
+                                String ids = String.valueOf(bb.get("_id"));
+                                String description = String.valueOf(bb.get("description"));
+                                MilestoneSpinnerItem m = new MilestoneSpinnerItem(ids, description);
+                                milestoneItems.add(m);
+                            }
+                        }
+
+                        System.out.println(milestoneItems);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    conn.disconnect();
+
+                } catch (MalformedURLException e) {
+
+                    e.printStackTrace();
+
+                } catch (IOException e) {
+
+                    e.printStackTrace();
+
+                }
+
+                MilestoneSpinnerItem[] milestones = new MilestoneSpinnerItem[milestoneItems.size()];
+                for (int i = 0; i < milestoneItems.size(); i++) {
+                    milestones[i] = new MilestoneSpinnerItem(milestoneItems.get(i).getId(), milestoneItems.get(i).getDescription());
+                }
+
+                ArrayAdapter<MilestoneSpinnerItem> milestoneAdapter = new ArrayAdapter<MilestoneSpinnerItem>(parentView.getContext(), android.R.layout.simple_spinner_dropdown_item, milestones);
+                milestone.setAdapter(milestoneAdapter);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                return;
+            }
+
+        });
 
         id.setText(t.getId());
         title.setText(t.getTitle());
         description.setText(t.getDescription());
-        //state.setText(t.getState());
         from.setText(t.getFrom());
         to.setText(t.getTo());
-        //project.setText(t.getProject());
-        //milestone.setText(t.getMilestone());
-        //user.setText(t.getUser());
 
         edit = (Button) findViewById(R.id.editTask);
-        edit.setOnClickListener( new View.OnClickListener() {
+        edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
@@ -217,10 +361,10 @@ public class TaskDetail extends AppCompatActivity {
                             .appendQueryParameter("id", id.getText().toString())
                             .appendQueryParameter("title", title.getText().toString())
                             .appendQueryParameter("description", description.getText().toString())
-                            .appendQueryParameter("state", state.toString())
-                            .appendQueryParameter("user", user.toString())
-                            .appendQueryParameter("project", project.toString())
-                            .appendQueryParameter("milestone", milestone.toString())
+                            .appendQueryParameter("state", state.getSelectedItem().toString())
+                            .appendQueryParameter("user", finalUserItems.get(user.getSelectedItemPosition()).getId())
+                            .appendQueryParameter("project", finalProjectItems.get(project.getSelectedItemPosition()).getId())
+                            .appendQueryParameter("milestone", ((MilestoneSpinnerItem)milestone.getSelectedItem()).getId())
                             .appendQueryParameter("from", from.getText().toString())
                             .appendQueryParameter("to", to.getText().toString());
 
