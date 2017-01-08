@@ -118,9 +118,11 @@ public class MilestoneDetail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    URL url = new URL("http://10.0.2.2:7777/api/projects/" + projectId + "/milestones");
+                    Intent detailIntent = getIntent();
+                    String milestoneId = detailIntent.getStringExtra("id");
+                    URL url = new URL("http://10.0.2.2:7777/api/milestones/" + milestoneId);
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setRequestMethod("POST");
+                    conn.setRequestMethod("PUT");
 
                     if (MainActivity.msCookieManager.getCookieStore().getCookies().size() > 0) {
                         // While joining the Cookies, use ',' or ';' as needed. Most of the servers are using ';'
@@ -134,6 +136,7 @@ public class MilestoneDetail extends AppCompatActivity {
                     Uri.Builder builder = new Uri.Builder()
                             .appendQueryParameter("id", id.getText().toString())
                             .appendQueryParameter("to", to.getText().toString())
+                            .appendQueryParameter("project_id", projectId)
                             .appendQueryParameter("description", description.getText().toString());
                     String query = builder.build().getEncodedQuery();
 

@@ -7,20 +7,13 @@
     android:layout_height="fill_parent"
     android:weightSum="1">
 
-    <TextView
-        android:text="Create new Problem"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView1"
-        android:textSize="30sp"
-        android:textStyle="normal|bold" />
-
     <EditText
         android:hint="Enter text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/problemText"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:layout_marginTop="10dp" />
 
 
     <TextView
@@ -35,13 +28,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/taskState" />
 
-
-
     <Button
         android:text="Add Problem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/addProblem"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:layout_marginTop="40dp"/>
 
 </LinearLayout>

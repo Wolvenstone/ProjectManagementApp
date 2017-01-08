@@ -109,6 +109,8 @@ public class SolutionAdd extends AppCompatActivity {
                 }
 
                 Toast.makeText(com.se.projectmanagement.SolutionAdd.this, "Solution added successfully!", Toast.LENGTH_SHORT).show();
+                setResult(Activity.RESULT_OK);
+                finish();
             }
         });
 

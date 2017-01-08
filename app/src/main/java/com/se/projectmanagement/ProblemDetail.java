@@ -188,9 +188,9 @@ public class ProblemDetail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    URL url = new URL("http://10.0.2.2:7777/api/tasks/"+taskId+"/problems");
+                    URL url = new URL("http://10.0.2.2:7777/api/problems/" + problemId);
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setRequestMethod("POST");
+                    conn.setRequestMethod("PUT");
 
                     if (MainActivity.msCookieManager.getCookieStore().getCookies().size() > 0) {
                         // While joining the Cookies, use ',' or ';' as needed. Most of the servers are using ';'
@@ -207,8 +207,7 @@ public class ProblemDetail extends AppCompatActivity {
                     Uri.Builder builder = new Uri.Builder()
                             .appendQueryParameter("id", id.getText().toString())
                             .appendQueryParameter("user", p.getUser())
-                            .appendQueryParameter("task", taskId)
-                            //.appendQueryParameter("task_id", taskId)
+                            .appendQueryParameter("task_id", taskId)
                             .appendQueryParameter("type", "problem")
                             .appendQueryParameter("text", text.getText().toString())
                             .appendQueryParameter("state",  state.getSelectedItem().toString())
@@ -251,6 +250,8 @@ public class ProblemDetail extends AppCompatActivity {
                 }
 
                 Toast.makeText(ProblemDetail.this, "Problem updated successfully!", Toast.LENGTH_SHORT).show();
+                setResult(Activity.RESULT_OK);
+                finish();
             }
         });
 

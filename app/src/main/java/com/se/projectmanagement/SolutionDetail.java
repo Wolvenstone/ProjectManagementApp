@@ -182,9 +182,9 @@ public class SolutionDetail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    URL url = new URL("http://10.0.2.2:7777/api/problems/"+problemId+"/solutions");
+                    URL url = new URL("http://10.0.2.2:7777/api/problems/" + solutionId);
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setRequestMethod("POST");
+                    conn.setRequestMethod("PUT");
 
                     if (MainActivity.msCookieManager.getCookieStore().getCookies().size() > 0) {
                         // While joining the Cookies, use ',' or ';' as needed. Most of the servers are using ';'
@@ -196,16 +196,13 @@ public class SolutionDetail extends AppCompatActivity {
                     conn.setDoOutput(true);
                     conn.setDoInput(true);
 
-
-
                     Uri.Builder builder = new Uri.Builder()
                             .appendQueryParameter("id", id.getText().toString())
+                            .appendQueryParameter("task_id", taskId)
                             .appendQueryParameter("user", s.getUser())
-                            //.appendQueryParameter("task", taskId)
-                            //.appendQueryParameter("task_id", taskId)
                             .appendQueryParameter("type", "solution")
                             .appendQueryParameter("text", text.getText().toString())
-                            .appendQueryParameter("problem", problemId);
+                            .appendQueryParameter("problem_id", problemId);
 
 
 
@@ -244,6 +241,8 @@ public class SolutionDetail extends AppCompatActivity {
                 }
 
                 Toast.makeText(SolutionDetail.this, "Problem updated successfully!", Toast.LENGTH_SHORT).show();
+                setResult(Activity.RESULT_OK);
+                finish();
             }
         });
 

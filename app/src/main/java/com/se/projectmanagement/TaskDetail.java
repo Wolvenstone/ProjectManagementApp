@@ -370,9 +370,11 @@ public class TaskDetail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    URL url = new URL("http://10.0.2.2:7777/api/tasks/");
+                    Intent detailIntent = getIntent();
+                    String taskId = detailIntent.getStringExtra("id");
+                    URL url = new URL("http://10.0.2.2:7777/api/tasks/" + taskId);
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setRequestMethod("POST");
+                    conn.setRequestMethod("PUT");
 
                     if (MainActivity.msCookieManager.getCookieStore().getCookies().size() > 0) {
                         // While joining the Cookies, use ',' or ';' as needed. Most of the servers are using ';'

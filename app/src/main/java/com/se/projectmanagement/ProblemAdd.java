@@ -115,6 +115,8 @@ import java.net.URL;
                     }
 
                     Toast.makeText(com.se.projectmanagement.ProblemAdd.this, "Problem added successfully!", Toast.LENGTH_SHORT).show();
+                    setResult(Activity.RESULT_OK);
+                    finish();
                 }
             });
 
