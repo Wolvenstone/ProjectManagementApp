@@ -177,13 +177,21 @@ public class TaskDetail extends AppCompatActivity {
         }
 
         String[] users = new String[userItems.size()];
+        String[] userIds = new String[userItems.size()];
         for (int i = 0; i < userItems.size(); i++) {
             users[i] = userItems.get(i).getLastname();
+            userIds[i] = userItems.get(i).getId();
+        }
+
+        int indx = 0;
+        for (int i = 0; i < userIds.length; i++) {
+            if (userIds[i].equalsIgnoreCase(t.getProject())) indx = i;
+            System.out.println(userIds[i] + "\n" + t.getProject() + "\nidx: " + indx);
         }
 
         ArrayAdapter<String> userAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, users);
         user.setAdapter(userAdapter);
-        user.setSelection(userAdapter.getPosition(t.getUser()));
+        user.setSelection(userAdapter.getPosition(userIds[indx]));
         final ArrayList<User> finalUserItems = userItems;
 
         //state dropdown
@@ -248,16 +256,25 @@ public class TaskDetail extends AppCompatActivity {
         }
 
         String[] projects = new String[projectItems.size()];
+        String[] projectIds = new String[projectItems.size()];
         for (int i = 0; i < projectItems.size(); i++) {
             projects[i] = projectItems.get(i).getTitle();
+            projectIds[i] = projectItems.get(i).getId();
+        }
+
+        int idx = 0;
+        for (int i = 0; i < projectIds.length; i++) {
+            if (projectIds[i].equalsIgnoreCase(t.getProject())) idx = i;
+            System.out.println(projectIds[i] + "\n" + t.getProject() + "\nidx: " + idx);
         }
 
         ArrayAdapter<String> projectAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, projects);
         project.setAdapter(projectAdapter);
-        project.setSelection(projectAdapter.getPosition(t.getProject()));
+        project.setSelection(projectAdapter.getPosition(projects[idx]));
 
         //milestone dropdown
         final ArrayList<Project> finalProjectItems = projectItems;
+        final int finalIdx = idx;
         project.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -323,6 +340,16 @@ public class TaskDetail extends AppCompatActivity {
 
                 ArrayAdapter<MilestoneSpinnerItem> milestoneAdapter = new ArrayAdapter<MilestoneSpinnerItem>(parentView.getContext(), android.R.layout.simple_spinner_dropdown_item, milestones);
                 milestone.setAdapter(milestoneAdapter);
+
+                int index = 0;
+                for (int i = 0; i < milestones.length; i++) {
+                    if (milestones[i].getId().equalsIgnoreCase(t.getMilestone())) index = i;
+                    System.out.println(milestones[i].getId() + "\n" + t.getMilestone() + "\nindex: " + index);
+                }
+
+                if (project.getSelectedItem().toString().equalsIgnoreCase(finalProjectItems.get(finalIdx).getTitle())) {
+                    milestone.setSelection(milestoneAdapter.getPosition(milestones[index]));
+                }
             }
 
             @Override
