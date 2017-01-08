@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
 <LinearLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,8 +21,7 @@
         android:textAlignment="center"
         android:textSize="16sp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp" />
-
+        android:layout_marginBottom="20dp"/>
     <EditText
         android:hint="Enter title"
         android:layout_width="match_parent"
@@ -96,6 +101,13 @@
         android:hint="To (YYYY-MM-DD)" />
 
     <Button
+        android:text="Show Problems"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/showProblems"
+        android:textSize="25sp"/>
+
+    <Button
         android:text="Edit Task"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -103,4 +115,8 @@
         android:textSize="30sp"
         android:layout_marginTop="40dp"/>
 
+
+
 </LinearLayout>
+
+    </ScrollView>
