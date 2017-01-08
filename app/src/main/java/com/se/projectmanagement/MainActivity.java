@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.text.Html;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -52,7 +53,7 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private TextView info;
+    private TextView welcome;
     private LoginButton loginButton;
     private CallbackManager callbackManager;
     static final String COOKIES_HEADER = "Set-Cookie";
@@ -73,7 +74,10 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        info = (TextView)findViewById(R.id.info);
+        welcome = (TextView)findViewById(R.id.welcome);
+
+        welcome.setText(Html.fromHtml("Welcome to <b>Project Management App</b>!<br /><br />Manage <b>projects</b>, create <b>tasks</b> and resolve <b>problems</b>."));
+
         loginButton = (LoginButton)findViewById(R.id.login_button);
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -83,12 +87,10 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onCancel() {
-                info.setText("Login attempt canceled.");
             }
 
             @Override
             public void onError(FacebookException e) {
-                info.setText("Login attempt canceled.");
             }
         });
 
