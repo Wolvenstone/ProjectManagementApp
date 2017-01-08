@@ -42,6 +42,6 @@ public class Project {
     }
 
     public String toString() {
-        return "Title: " + title + "\nID: " + id + "\nDescription: " + description;
+        return title;
     }
 }

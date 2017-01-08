@@ -49,6 +49,13 @@ public class ProjectAdd extends AppCompatActivity {
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("POST");
 
+                    if (MainActivity.msCookieManager.getCookieStore().getCookies().size() > 0) {
+                        // While joining the Cookies, use ',' or ';' as needed. Most of the servers are using ';'
+                        System.out.println("COOKIES");
+                        conn.setRequestProperty("Cookie",
+                                TextUtils.join(";",  MainActivity.msCookieManager.getCookieStore().getCookies()));
+                    }
+
                     conn.setDoOutput(true);
                     conn.setDoInput(true);
 

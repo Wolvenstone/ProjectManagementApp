@@ -150,9 +150,8 @@ public class TaskDetail extends AppCompatActivity {
                         String firstname = String.valueOf(bb.get("firstname"));
                         String lastname = String.valueOf(bb.get("lastname"));
                         String email = String.valueOf(bb.get("email"));
-                        String facebookId = String.valueOf(bb.get("facebookId"));
-                        String tasks = String.valueOf(bb.get("tasks"));
-                        User u = new User(id, firstname, lastname, email, facebookId, tasks);
+                        String facebookId = String.valueOf(bb.get("facebookID"));
+                        User u = new User(id, firstname, lastname, email, facebookId);
                         userItems.add(u);
                     }
                 }
@@ -174,12 +173,13 @@ public class TaskDetail extends AppCompatActivity {
 
         }
 
-        String[] items = new String[10];
+        String[] items = new String[userItems.size()];
         for (int i = 0; i < userItems.size(); i++) {
-            items[i] = userItems.get(i).getFirstname();
+            items[i] = userItems.get(i).getLastname();
         }
 
         ArrayAdapter<String> userAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
+
         user.setAdapter(userAdapter);
 
         id.setText(t.getId());

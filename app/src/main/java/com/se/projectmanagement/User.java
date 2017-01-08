@@ -10,9 +10,8 @@ public class User {
     private String lastname;
     private String email;
     private String facebookId;
-    private String tasks;
 
-    public User(String id, String firstname, String lastname, String email, String facebookId, String tasks) {
+    public User(String id, String firstname, String lastname, String email, String facebookId) {
         if (id == null)
             throw new NullPointerException("id must not be NULL");
         this.id = id;
@@ -20,7 +19,6 @@ public class User {
         this.lastname = lastname;
         this.email = email;
         this.facebookId = facebookId;
-        this.tasks = tasks;
     }
 
     public String getId() {
@@ -63,16 +61,8 @@ public class User {
         this.facebookId = facebookId;
     }
 
-    public String getTasks() {
-        return tasks;
-    }
-
-    public void setTasks(String tasks) {
-        this.tasks = tasks;
-    }
-
     public String toString() {
         return "ID: " + id + "\nFirstname: " + firstname + "\nLastname: " + lastname + "\nEmail: " + email +
-                "\nFacebook-ID: " + facebookId + "\nTasks: " + tasks;
+                "\nFacebook-ID: " + facebookId;
     }
 }
