@@ -40,7 +40,7 @@ public class TaskList extends ListActivity {
 
 
         try {
-            URL url = new URL("http://10.0.2.2:7777/api/tasks");
+            URL url = new URL("http://sepm.azurewebsites.net/api/tasks");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 

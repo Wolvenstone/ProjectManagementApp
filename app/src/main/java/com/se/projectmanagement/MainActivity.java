@@ -111,9 +111,9 @@ public class MainActivity extends AppCompatActivity
 
     private void LoginOnServer(String token) {
         try {
-            //URL url = new URL("http://10.0.2.2:7777/auth/facebook/token?access_token="+loginResult.getAccessToken());
-            URL url = new URL("http://10.0.2.2:7777/auth/facebook/token?access_token="+token);
-            //URL url = new URL("http://10.0.2.2:7777/api/projects");
+            //URL url = new URL("http://sepm.azurewebsites.net/auth/facebook/token?access_token="+loginResult.getAccessToken());
+            URL url = new URL("http://sepm.azurewebsites.net/auth/facebook/token?access_token="+token);
+            //URL url = new URL("http://sepm.azurewebsites.net/api/projects");
             //URL url = new URL("http://www.android.com/");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             //conn.setDoOutput(true);

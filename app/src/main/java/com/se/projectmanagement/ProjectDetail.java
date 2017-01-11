@@ -50,7 +50,7 @@ public class ProjectDetail extends AppCompatActivity {
         String projectId = detailIntent.getStringExtra("id");
 
         try {
-            URL url = new URL("http://10.0.2.2:7777/api/projects/" + projectId);
+            URL url = new URL("http://sepm.azurewebsites.net/api/projects/" + projectId);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 
@@ -111,7 +111,7 @@ public class ProjectDetail extends AppCompatActivity {
                 try {
                     Intent detailIntent = getIntent();
                     String projectId = detailIntent.getStringExtra("id");
-                    URL url = new URL("http://10.0.2.2:7777/api/projects/" + projectId);
+                    URL url = new URL("http://sepm.azurewebsites.net/api/projects/" + projectId);
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("PUT");
 

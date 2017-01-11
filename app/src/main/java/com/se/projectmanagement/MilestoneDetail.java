@@ -58,7 +58,7 @@ public class MilestoneDetail extends AppCompatActivity {
         String title = detailIntent.getStringExtra("projectTitle");
 
         try {
-            URL url = new URL("http://10.0.2.2:7777/api/milestones/" + milestoneId);
+            URL url = new URL("http://sepm.azurewebsites.net/api/milestones/" + milestoneId);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 
@@ -120,7 +120,7 @@ public class MilestoneDetail extends AppCompatActivity {
                 try {
                     Intent detailIntent = getIntent();
                     String milestoneId = detailIntent.getStringExtra("id");
-                    URL url = new URL("http://10.0.2.2:7777/api/milestones/" + milestoneId);
+                    URL url = new URL("http://sepm.azurewebsites.net/api/milestones/" + milestoneId);
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("PUT");
 

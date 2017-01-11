@@ -61,7 +61,7 @@ public class SolutionDetail extends AppCompatActivity {
         solutionId = detailIntent.getStringExtra("id");
 
         try {
-            URL url = new URL("http://10.0.2.2:7777/api/problems/" + solutionId);
+            URL url = new URL("http://sepm.azurewebsites.net/api/problems/" + solutionId);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 
@@ -116,7 +116,7 @@ public class SolutionDetail extends AppCompatActivity {
 
 
         try {
-            URL url = new URL("http://10.0.2.2:7777/api/users/"+s.getUser());
+            URL url = new URL("http://sepm.azurewebsites.net/api/users/"+s.getUser());
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 
@@ -182,7 +182,7 @@ public class SolutionDetail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    URL url = new URL("http://10.0.2.2:7777/api/problems/" + solutionId);
+                    URL url = new URL("http://sepm.azurewebsites.net/api/problems/" + solutionId);
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("PUT");
 

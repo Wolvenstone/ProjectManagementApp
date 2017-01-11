@@ -64,7 +64,7 @@ public class TaskDetail extends AppCompatActivity {
         String taskId = detailIntent.getStringExtra("id");
 
         try {
-            URL url = new URL("http://10.0.2.2:7777/api/tasks/" + taskId);
+            URL url = new URL("http://sepm.azurewebsites.net/api/tasks/" + taskId);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 
@@ -123,7 +123,7 @@ public class TaskDetail extends AppCompatActivity {
         ArrayList<User> userItems = new ArrayList<User>();
 
         try {
-            URL url = new URL("http://10.0.2.2:7777/api/users");
+            URL url = new URL("http://sepm.azurewebsites.net/api/users");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 
@@ -204,7 +204,7 @@ public class TaskDetail extends AppCompatActivity {
         ArrayList<Project> projectItems = new ArrayList<Project>();
 
         try {
-            URL url = new URL("http://10.0.2.2:7777/api/projects");
+            URL url = new URL("http://sepm.azurewebsites.net/api/projects");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 
@@ -283,7 +283,7 @@ public class TaskDetail extends AppCompatActivity {
                 String projectId = finalProjectItems.get((int) id).getId();
 
                 try {
-                    URL url = new URL("http://10.0.2.2:7777/api/projects/" + projectId + "/milestones");
+                    URL url = new URL("http://sepm.azurewebsites.net/api/projects/" + projectId + "/milestones");
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("GET");
 
@@ -372,7 +372,7 @@ public class TaskDetail extends AppCompatActivity {
                 try {
                     Intent detailIntent = getIntent();
                     String taskId = detailIntent.getStringExtra("id");
-                    URL url = new URL("http://10.0.2.2:7777/api/tasks/" + taskId);
+                    URL url = new URL("http://sepm.azurewebsites.net/api/tasks/" + taskId);
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("PUT");
 

@@ -54,7 +54,7 @@ public class SolutionAdd extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    URL url = new URL("http://10.0.2.2:7777/api/problems/"+problemId+"/solutions");
+                    URL url = new URL("http://sepm.azurewebsites.net/api/problems/"+problemId+"/solutions");
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("POST");
 

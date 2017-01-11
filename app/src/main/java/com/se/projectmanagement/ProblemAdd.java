@@ -61,7 +61,7 @@ import java.net.URL;
                 @Override
                 public void onClick(View v) {
                     try {
-                        URL url = new URL("http://10.0.2.2:7777/api/tasks/"+taskId+"/problems");
+                        URL url = new URL("http://sepm.azurewebsites.net/api/tasks/"+taskId+"/problems");
                         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                         conn.setRequestMethod("POST");
 

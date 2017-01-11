@@ -47,7 +47,7 @@ public class ProjectAdd extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    URL url = new URL("http://10.0.2.2:7777/api/projects/");
+                    URL url = new URL("http://sepm.azurewebsites.net/api/projects/");
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("POST");
 

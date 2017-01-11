@@ -62,7 +62,7 @@ public class MilestoneAdd extends AppCompatActivity {
                 String selectedDate = sdf.format(new Date(to.getDate()));
 
                 try {
-                    URL url = new URL("http://10.0.2.2:7777/api/projects/" + projectId + "/milestones");
+                    URL url = new URL("http://sepm.azurewebsites.net/api/projects/" + projectId + "/milestones");
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("POST");
 

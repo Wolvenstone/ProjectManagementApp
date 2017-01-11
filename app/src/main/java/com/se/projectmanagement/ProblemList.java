@@ -47,7 +47,7 @@ public class ProblemList extends ListActivity {
 
 
         try {
-            URL url = new URL("http://10.0.2.2:7777/api/tasks/" + taskId + "/problems");
+            URL url = new URL("http://sepm.azurewebsites.net/api/tasks/" + taskId + "/problems");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 
